@@ -1,0 +1,21 @@
+
+[
+  {
+    "id": 1,
+    "name": "Safari Trolley Bag",
+    "price": 2999,
+    "image": "/images/safari.jpg"
+  },
+  {
+    "id": 2,
+    "name": "American Tourister Backpack",
+    "price": 1499,
+    "image": "/images/tourister.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Skybags Duffel",
+    "price": 1299,
+    "image": "/images/skybags.jpg"
+  }
+]
