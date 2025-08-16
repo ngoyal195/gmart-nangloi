@@ -78,7 +78,7 @@ export default function App() {
             className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url('https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=1600&q=80')",
+                "linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url('https://ibb.co/tMfjZ5Bs')",
             }}
           >
             <div className="text-center px-4">
