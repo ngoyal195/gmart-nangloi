@@ -77,9 +77,10 @@ export default function App() {
           <div
             className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center"
             style={{
-              backgroundImage:
-                "linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url('WhatsApp Image 2025-08-16 at 2.15.23 PM.jpeg')",
-            }}
+  backgroundImage:
+    "linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url('https://ibb.co/tMfjZ5Bs')",
+}}
+
           >
             <div className="text-center px-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-md">
