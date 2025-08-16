@@ -77,9 +77,9 @@ export default function App() {
           <div
             className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center"
             style={{
-  backgroundImage:
-    "linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url('/images/home.jpeg')",
+  backgroundImage: `linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url(${import.meta.env.BASE_URL}images/home.jpeg)`,
 }}
+
 
           >
             <div className="text-center px-4">
