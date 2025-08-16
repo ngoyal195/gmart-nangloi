@@ -61,9 +61,9 @@ function App() {
       {/* Contact */}
       <section id="contact" className="bg-gray-200 py-16 text-center">
         <h3 className="text-3xl font-bold mb-6">Contact Us</h3>
-        <p>📍 Nangloi, Delhi</p>
-        <p>📞 +91-9876543210</p>
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mt-4 inline-block bg-green-500 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600">
+        <p>📍 31/20, Main Rohtak Road, Basement of Vishal Mega Mart Nangloi, Delhi - 110041</p>
+        <p>📞 +91-9811637493</p>
+        <a href="https://wa.me/9811637493" target="_blank" rel="noreferrer" className="mt-4 inline-block bg-green-500 text-white px-6 py-3 rounded-lg shadow hover:bg-green-600">
           Chat on WhatsApp
         </a>
       </section>
