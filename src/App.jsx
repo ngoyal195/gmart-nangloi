@@ -75,7 +75,7 @@ export default function App() {
         {/* HERO */}
         <section id="home" className="relative">
           <div
-            className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center"
+            className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center animate-fade-in"
             style={{
   backgroundImage: `linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.25)), url(${import.meta.env.BASE_URL}images/home.jpeg)`,
 }}
@@ -90,7 +90,7 @@ export default function App() {
                 Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
               </p>
               <div className="mt-6 flex justify-center gap-3">
-                <a href="#products" className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow hover:opacity-95">Explore Products</a>
+                <a href="#products" className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow hover:opacity-95 hover:shadow-glow">Explore Products</a>
                 <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full font-medium shadow">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8l-1.1 2-2.2-.7a8.67 8.67 0 01-3-.8 8.5 8.5 0 01-4.2-4.7 8.6 8.6 0 01.3-6.1l1.2-2.2 2.2.6c1.1.3 2.1.7 3 .9"></path></svg>
                   Quick Enquiry
@@ -103,13 +103,13 @@ export default function App() {
         {/* PRODUCTS */}
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold">Our Products</h2>
+            <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in">Our Products</h2>
             <div className="text-sm text-gray-600">Showing popular items</div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {products.map((p) => (
-              <article key={p.id} className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+              <article key={p.id} className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden animate-slide-up">
                 <div className="h-44 sm:h-52 overflow-hidden">
                   <img src={p.img} alt={p.name} className="w-full h-full object-cover transform hover:scale-105 transition" />
                 </div>
