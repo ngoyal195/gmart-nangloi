@@ -10,7 +10,7 @@ export default function App() {
   // Replace with your product images (hosted or in /public/images)
   const products = [
     { id: 1, name: "Safari Backpack", price: "₹2,499", img: "https://images.unsplash.com/photo-1585386959984-a4155222b1f6?w=1200&q=80" },
-    { id: 2, name: "VIP Trolley Bag", price: "₹5,999", img: "https://ibb.co/tMfjZ5Bs" },
+    { id: 2, name: "VIP Aristocract Set of 3", price: "₹6,299", img: "${import.meta.env.BASE_URL}images/storm.jpg" },
     { id: 3, name: "American Tourister Duffel", price: "₹3,499", img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=1200&q=80" },
     { id: 4, name: "Kids Cartoon Backpack", price: "₹899", img: "https://images.unsplash.com/photo-1542293787938-c9e299b8804c?w=1200&q=80" },
     { id: 5, name: "Office Laptop Bag", price: "₹1,799", img: "https://images.unsplash.com/photo-1513890727249-0b09c8f7a2f1?w=1200&q=80" },
