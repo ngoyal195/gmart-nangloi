@@ -156,9 +156,15 @@ export default function App() {
                 <li>Warranty support for branded luggage</li>
               </ul>
             </div>
-            <div className="rounded-lg overflow-hidden shadow">
-              <img src="/images/home.jpeg" alt="Store" className="w-full h-64 object-cover" />
-            </div>
+           <div className="rounded-lg overflow-hidden shadow">
+  <img
+    src={`${import.meta.env.BASE_URL}images/Front.jpeg`}
+    alt="G-Mart Nangloi store interior"
+    className="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+    loading="lazy"
+  />
+</div>
+
           </div>
         </section>
 
