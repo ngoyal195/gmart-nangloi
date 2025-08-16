@@ -157,7 +157,7 @@ export default function App() {
               </ul>
             </div>
             <div className="rounded-lg overflow-hidden shadow">
-              <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=1200&q=80" alt="Store" className="w-full h-64 object-cover" />
+              <img src="/images/home.jpeg" alt="Store" className="w-full h-64 object-cover" />
             </div>
           </div>
         </section>
