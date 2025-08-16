@@ -46,7 +46,7 @@ function App() {
       {/* Offers */}
       <section id="offers" className="bg-yellow-100 py-16 text-center">
         <h3 className="text-3xl font-bold mb-6">🔥 Current Offers</h3>
-        <p>Get up to <span className="font-bold">30% OFF</span> on select Safari & VIP Trolley Bags!</p>
+        <p>Get up to <span className="font-bold">75% OFF</span> on select Safari & VIP Trolley Bags!</p>
       </section>
 
       {/* About */}
