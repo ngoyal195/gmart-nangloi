@@ -11,10 +11,10 @@ export default function App() {
   const products = [
     { id: 1, name: "Safari Seek 32 Backpack", price: "₹1,799", img: `${import.meta.env.BASE_URL}images/seek32.jpg` },
     { id: 2, name: "VIP Aristocrat Set of 3", price: "₹6,299", img: `${import.meta.env.BASE_URL}images/storm.jpg` },
-    { id: 3, name: "American Tourister Duffel", price: "₹3,499", img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=1200&q=80" },
-    { id: 4, name: "Kids Cartoon Backpack", price: "₹899", img: "https://images.unsplash.com/photo-1542293787938-c9e299b8804c?w=1200&q=80" },
-    { id: 5, name: "Office Laptop Bag", price: "₹1,799", img: "https://images.unsplash.com/photo-1513890727249-0b09c8f7a2f1?w=1200&q=80" },
-    { id: 6, name: "Fancy Vanity Case", price: "₹1,199", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=1200&q=80" },
+    { id: 3, name: "American Tourister SKIDDLE", price: "₹3,359", img: `${import.meta.env.BASE_URL}images/at-skiddle.jpg` },
+    { id: 4, name: "Kids Cartoon Backpack", price: "₹699", img: `${import.meta.env.BASE_URL}images/kids.jpg` },
+    { id: 5, name: "IQOMI Laptop Backpack", price: "₹799", img: `${import.meta.env.BASE_URL}images/iqomi.jpg` },
+    { id: 6, name: "Make-up Vanity", price: "₹899", img: `${import.meta.env.BASE_URL}images/vanity.jpg` },
   ];
   // ===============================
 
