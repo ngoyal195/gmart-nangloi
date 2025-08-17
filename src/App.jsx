@@ -94,11 +94,6 @@ export default function App() {
         {menuOpen && (
           <div className="md:hidden bg-white/95 border-t">
             <div className="px-4 py-3 flex flex-col gap-2">
-              <a href="#home" onClick={() => setMenuOpen(false)} className="py-2">Home</a>
-              <a href="#products" onClick={() => setMenuOpen(false)} className="py-2">Products</a>
-              <a href="#offers" onClick={() => setMenuOpen(false)} className="py-2">Offers</a>
-              <a href="#about" onClick={() => setMenuOpen(false)} className="py-2">About</a>
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="py-2">Contact</a>
               <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="py-2 text-green-600 font-medium">Chat on WhatsApp</a>
             </div>
           </div>
