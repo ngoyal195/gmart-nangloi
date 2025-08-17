@@ -102,7 +102,7 @@ export default function Brands() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 relative">
       {/* Floating emojis background (z-0) */}
-      <FloatingEmojis count={10} />
+      <FloatingEmojis count={45} />
 
       {/* Header */}
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
