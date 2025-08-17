@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 /**
  * src/Brands.jsx
- * Paste this file exactly at /src/Brands.jsx (case sensitive).
- * Uses images from /public/images/... via import.meta.env.BASE_URL
+ * - Floating emoji background (interactive pop on click/touch)
+ * - Brands grid (keeps the earlier layout/words intact)
+ *
+ * Paste this exactly as src/Brands.jsx (case-sensitive).
  */
 
 const brandsData = [
@@ -37,9 +39,71 @@ const brandsData = [
   },
 ];
 
+const EMOJIS = ["🧳", "🎒", "👜", "🧳", "🎒"]; // repeat pattern
+
+function FloatingEmojis({ count = 10 }) {
+  // build an array of emoji instances with randomized properties
+  const [popped, setPopped] = useState({});
+  const instances = Array.from({ length: count }).map((_, i) => {
+    // randomized position and animation direction
+    const left = Math.round(Math.random() * 90); // percentage 0..90
+    const top = Math.round(Math.random() * 80); // start vertical offset
+    const size = 18 + Math.round(Math.random() * 22); // font-size px
+    const duration = 8 + Math.random() * 8; // seconds
+    const delay = Math.random() * 6; // seconds
+    const dir = Math.random() > 0.5 ? "up" : "down";
+    const emoji = EMOJIS[i % EMOJIS.length];
+    return { id: `e-${i}`, left, top, size, duration, delay, dir, emoji };
+  });
+
+  const handlePop = (id) => {
+    setPopped((s) => ({ ...s, [id]: true }));
+    // remove pop state after animation (so it can re-appear if remounted)
+    setTimeout(() => setPopped((s) => {
+      const copy = { ...s };
+      delete copy[id];
+      return copy;
+    }), 600);
+  };
+
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {/* container that holds absolute emoji items */}
+      <div className="relative w-full h-full">
+        {instances.map((it) => (
+          <button
+            key={it.id}
+            // allow interaction (pointer events) only for the emoji buttons
+            onClick={() => handlePop(it.id)}
+            onTouchStart={() => handlePop(it.id)}
+            className={`emoji pointer-events-auto absolute -translate-y-1/2 -translate-x-1/2 select-none`}
+            title="Pop me!"
+            style={{
+              left: `${it.left}%`,
+              top: `${it.top}%`,
+              fontSize: `${it.size}px`,
+              animationDuration: `${it.duration}s`,
+              animationDelay: `${it.delay}s`,
+              // choose float direction class via style attribute (Tailwind doesn't create dynamic class names easily)
+              // we'll use data-dir attribute and CSS will read it.
+            }}
+            data-dir={it.dir}
+            aria-label="Floating emoji"
+          >
+            <span className={popped[it.id] ? "pop" : ""} style={{ display: "inline-block" }}>{it.emoji}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Brands() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 relative">
+      {/* Floating emojis background (z-0) */}
+      <FloatingEmojis count={10} />
+
       {/* Header */}
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -61,7 +125,7 @@ export default function Brands() {
         </div>
       </header>
 
-      <main className="pt-24 pb-16">
+      <main className="pt-24 pb-16 relative z-10">
         <section className="max-w-6xl mx-auto px-4 py-10">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 animate-fade-in">Brands We Carry</h1>
@@ -110,9 +174,9 @@ export default function Brands() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-gray-300 py-6 mt-12">
+      <footer className="bg-gray-900 text-gray-300 py-6 mt-12 relative z-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="mb-2">G-Mart Nangloi • Nangloi, Delhi</div>
+          <div className="mb-2">G-Mart Nangloi • Delhi</div>
           <div className="text-sm">© {new Date().getFullYear()} G-Mart Nangloi. All rights reserved.</div>
         </div>
       </footer>
