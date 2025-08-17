@@ -100,6 +100,12 @@ export default function App() {
                   Explore Products
                 </a>
                 <a
+    href={`${import.meta.env.BASE_URL}brands`}
+    className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+  >
+    Available Brands
+  </a>
+                <a
                   href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noreferrer"
