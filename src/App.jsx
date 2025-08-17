@@ -1,34 +1,38 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import emailjs from "emailjs-com";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const sendEmail = (e) => {
-  e.preventDefault();
+  const form = useRef(); // ✅ Added useRef for the form
 
-  emailjs.sendForm(
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
         "service_lgp3esc",   // your Service ID
         "template_12upiko",  // your Template ID
         form.current,
-        "S2Men4c1to3zZ2MPT"  // your Public Key
-      ).then(
-    () => {
-      alert("✅ Enquiry sent successfully!");
-      e.target.reset();
-    },
-    (error) => {
-      alert("❌ Failed to send. Please try again.");
-      console.error(error);
-    }
-  );
-};
+        "S2Men4c1to3zZ2MPT" // your Public Key
+      )
+      .then(
+        () => {
+          alert("✅ Enquiry sent successfully!");
+          form.current.reset();
+        },
+        (error) => {
+          console.error(error);
+          alert("❌ Failed to send. Please try again.");
+        }
+      );
+  };
 
   // === Customize these values ===
   const SHOP_NAME = "G-Mart Nangloi";
   const PHONE = "+91-9811637493";
-  const ADDRESS = "31/20, Main Rohtak Road, Basement of Vishal Mega Mart Nangloi, Delhi - 110041";
-  // Replace with your product images (hosted or in /public/images)
+  const ADDRESS =
+    "31/20, Main Rohtak Road, Basement of Vishal Mega Mart Nangloi, Delhi - 110041";
   const products = [
     { id: 1, name: "Safari Seek 32 Backpack", price: "₹1,799", img: `${import.meta.env.BASE_URL}images/seek32.jpg` },
     { id: 2, name: "VIP Aristocrat Set of 3", price: "₹6,299", img: `${import.meta.env.BASE_URL}images/storm.jpg` },
@@ -76,7 +80,12 @@ export default function App() {
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              <path
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
             </svg>
           </button>
         </div>
@@ -120,18 +129,17 @@ export default function App() {
                   Explore Products
                 </a>
                 <a
-    href={`${import.meta.env.BASE_URL}#/brands`}
-    className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
-  >
-    Available Brands
-  </a>
+                  href={`${import.meta.env.BASE_URL}#/brands`}
+                  className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  Available Brands
+                </a>
                 <a
                   href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95"
                 >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8l-1.1 2-2.2-.7a8.67 8.67 0 01-3-.8 8.5 8.5 0 01-4.2-4.7 8.6 8.6 0 01.3-6.1l1.2-2.2 2.2.6c1.1.3 2.1.7 3 .9"></path></svg>
                   Quick Enquiry
                 </a>
               </div>
@@ -186,90 +194,51 @@ export default function App() {
           </div>
         </section>
 
-        {/* OFFERS */}
-        <section id="offers" className="bg-gradient-to-r from-yellow-50 to-white border-t py-10">
-          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-xl font-bold animate-pulse-slow">🔥 Ongoing Offers</h3>
-              <p className="text-gray-700 mt-1">Limited time: Up to <span className="font-bold">75% OFF</span> on select Safari & VIP trolley bags. Visit our store in Nangloi for bundle deals.</p>
-            </div>
-            <div>
-              <a href="#contact" className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-full shadow hover:shadow-glow transition">Get Offer Details</a>
-            </div>
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section id="about" className="max-w-6xl mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-3">About {SHOP_NAME}</h3>
-              <p className="text-gray-700">G-Mart Nangloi is a trusted retailer and wholesaler of premium bags and luggage. We carry brands like Safari, VIP, American Tourister, Kamiliant, Aristocrat and more. Open for in-store shopping and bulk orders.</p>
-              <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1">
-                <li>Retail & wholesale pricing available</li>
-                <li>Largest selection in Nangloi market</li>
-                <li>Warranty support for branded luggage</li>
-              </ul>
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-soft">
-              <img
-                src={`${import.meta.env.BASE_URL}images/Front.jpeg`}
-                alt="G-Mart Nangloi store interior"
-                className="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </section>
-
         {/* CONTACT */}
         <section id="contact" className="bg-gray-50 py-12">
           <div className="max-w-4xl mx-auto px-4">
             <h3 className="text-2xl font-bold mb-6">Contact & Visit</h3>
-
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-soft">
                 <h4 className="font-semibold mb-2">Store Address</h4>
                 <p className="text-gray-700">{ADDRESS}</p>
-
                 <h4 className="font-semibold mt-4 mb-2">Phone</h4>
                 <p className="text-gray-700">{PHONE}</p>
-
                 <div className="mt-4 flex gap-3">
                   <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block bg-green-500 text-white px-4 py-2 rounded shadow hover:shadow-glow transition">Chat on WhatsApp</a>
                   <a href={`https://www.google.com/maps/search/${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer" className="inline-block border px-4 py-2 rounded hover:shadow-md transition">Open in Maps</a>
                 </div>
               </div>
 
-             <form ref={form}
-  onSubmit={sendEmail}
-  className="bg-white p-6 rounded-xl shadow-soft space-y-3"
->
-  <div>
-    <label className="block text-sm font-medium text-gray-700">Name</label>
-    <input required name="from_name" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
-  </div>
-  <div>
-    <label className="block text-sm font-medium text-gray-700">Phone / Email</label>
-    <input required name="contact" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
-  </div>
-  <div>
-    <label className="block text-sm font-medium text-gray-700">Message</label>
-    <textarea required name="message" rows="3" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition"></textarea>
-  </div>
-  <div className="flex justify-end">
-    <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95">
-      Send Enquiry
-    </button>
-  </div>
-</form>
-
+              {/* EmailJS Form */}
+              <form
+                ref={form}
+                onSubmit={sendEmail}
+                className="bg-white p-6 rounded-xl shadow-soft space-y-3"
+              >
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Name</label>
+                  <input required name="from_name" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Phone / Email</label>
+                  <input required name="contact" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Message</label>
+                  <textarea required name="message" rows="3" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition"></textarea>
+                </div>
+                <div className="flex justify-end">
+                  <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95">
+                    Send Enquiry
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="bg-gradient-to-r from-gray-900 to-indigo-900 text-gray-300 py-6 mt-8 animate-fade-in">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-2">{SHOP_NAME} • Nangloi, Delhi</div>
