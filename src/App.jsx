@@ -1,20 +1,23 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import emailjs from "emailjs-com";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const form = useRef(); // ✅ Added useRef for the form
+  const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
-        "service_lgp3esc",   // your Service ID
-        "template_12upiko",  // your Template ID
+        "service_lgp3esc",
+        "template_12upiko",
         form.current,
-        "S2Men4c1to3zZ2MPT" // your Public Key
+        "S2Men4c1to3zZ2MPT"
       )
       .then(
         () => {
@@ -40,6 +43,25 @@ export default function App() {
     { id: 4, name: "Kids Cartoon Backpack", price: "₹699", img: `${import.meta.env.BASE_URL}images/kids.jpg` },
     { id: 5, name: "IQOMI Laptop Backpack", price: "₹799", img: `${import.meta.env.BASE_URL}images/iqomi.jpg` },
     { id: 6, name: "Make-up Vanity", price: "₹899", img: `${import.meta.env.BASE_URL}images/vanity.jpg` },
+  ];
+  // ===============================
+
+  // === Slideshow settings ===
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+  };
+
+  const sliderImages = [
+    `${import.meta.env.BASE_URL}images/home1.jpg`,
+    `${import.meta.env.BASE_URL}images/home2.jpg`,
+    `${import.meta.env.BASE_URL}images/home3.jpg`,
   ];
   // ===============================
 
@@ -145,6 +167,17 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          {/* === Slideshow === */}
+          <div className="w-full max-w-5xl mx-auto mt-8 rounded-xl overflow-hidden shadow-lg px-4">
+            <Slider {...sliderSettings}>
+              {sliderImages.map((img, i) => (
+                <div key={i}>
+                  <img src={img} alt={`Slide ${i + 1}`} className="w-full h-72 sm:h-96 object-cover" />
+                </div>
+              ))}
+            </Slider>
+          </div>
         </section>
 
         {/* PRODUCTS */}
@@ -245,6 +278,24 @@ export default function App() {
           <div className="text-sm">© {new Date().getFullYear()} {SHOP_NAME}. All rights reserved.</div>
         </div>
       </footer>
+
+      {/* Floating Buttons */}
+      <div className="fixed bottom-5 right-5 flex flex-col space-y-3 z-50">
+        <a
+          href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 p-4 rounded-full shadow-lg hover:scale-110 transform transition"
+        >
+          <img src={`${import.meta.env.BASE_URL}images/whatsapp.png`} alt="WhatsApp" className="w-6 h-6" />
+        </a>
+        <a
+          href={`tel:${PHONE}`}
+          className="bg-blue-500 p-4 rounded-full shadow-lg hover:scale-110 transform transition text-white text-xl flex items-center justify-center"
+        >
+          📞
+        </a>
+      </div>
     </div>
   );
 }
