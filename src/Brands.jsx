@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 /**
  * src/Brands.jsx
- * - Floating emoji background (interactive pop on click/touch)
  * - Brand cards only (no products)
  * - Each card has image + name + description
  */
@@ -53,61 +52,9 @@ const brandsData = [
   },
 ];
 
-const EMOJIS = ["🧳", "🎒", "👜", "🧳", "🎒"]; // repeat pattern
-
-function FloatingEmojis({ count = 80 }) {
-  const [popped, setPopped] = useState({});
-  const instances = Array.from({ length: count }).map((_, i) => {
-    const left = Math.round(Math.random() * 90);
-    const top = Math.round(Math.random() * 80);
-    const size = 18 + Math.round(Math.random() * 22);
-    const duration = 6 + Math.random() * 5; // faster movement
-    const delay = Math.random() * 4;
-    const dir = Math.random() > 0.5 ? "up" : "down";
-    const emoji = EMOJIS[i % EMOJIS.length];
-    return { id: `e-${i}`, left, top, size, duration, delay, dir, emoji };
-  });
-
-  const handlePop = (id) => {
-    setPopped((s) => ({ ...s, [id]: true }));
-    setTimeout(() => setPopped((s) => {
-      const copy = { ...s };
-      delete copy[id];
-      return copy;
-    }), 600);
-  };
-
-  return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div className="relative w-full h-full">
-        {instances.map((it) => (
-          <button
-            key={it.id}
-            onClick={() => handlePop(it.id)}
-            onTouchStart={() => handlePop(it.id)}
-            className="emoji pointer-events-auto absolute -translate-y-1/2 -translate-x-1/2 select-none"
-            style={{
-              left: `${it.left}%`,
-              top: `${it.top}%`,
-              fontSize: `${it.size}px`,
-              animationDuration: `${it.duration}s`,
-              animationDelay: `${it.delay}s`,
-            }}
-            data-dir={it.dir}
-          >
-            <span className={popped[it.id] ? "pop" : ""}>{it.emoji}</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function Brands() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 relative">
-      <FloatingEmojis count={80} />
-
       {/* Header */}
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
