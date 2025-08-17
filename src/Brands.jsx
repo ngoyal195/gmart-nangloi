@@ -13,7 +13,7 @@ const brandsData = [
   {
     id: "safari",
     name: "Safari",
-    img: `${import.meta.env.BASE_URL}images/brands/safari.jpg`,
+    img: `${import.meta.env.BASE_URL}images/safari.jpg`,
     sample: [
       { id: "s1", name: "Safari Seek 32 Backpack", price: "₹1,799", img: `${import.meta.env.BASE_URL}images/seek32.jpg` },
       { id: "s2", name: "Safari Trolley", price: "₹3,499", img: `${import.meta.env.BASE_URL}images/storm.jpg` },
@@ -22,7 +22,7 @@ const brandsData = [
   {
     id: "vip",
     name: "VIP / Aristocrat",
-    img: `${import.meta.env.BASE_URL}images/brands/vip.jpg`,
+    img: `${import.meta.env.BASE_URL}images/vip.jpg`,
     sample: [
       { id: "v1", name: "VIP Aristocrat Set of 3", price: "₹6,299", img: `${import.meta.env.BASE_URL}images/storm.jpg` },
       { id: "v2", name: "VIP Cabin Trolley", price: "₹4,999", img: `${import.meta.env.BASE_URL}images/at-skiddle.jpg` },
@@ -31,7 +31,7 @@ const brandsData = [
   {
     id: "american-tourister",
     name: "American Tourister",
-    img: `${import.meta.env.BASE_URL}images/brands/american.jpg`,
+    img: `${import.meta.env.BASE_URL}images/american.jpg`,
     sample: [
       { id: "a1", name: "American Tourister Duffel", price: "₹3,359", img: `${import.meta.env.BASE_URL}images/at-skiddle.jpg` },
       { id: "a2", name: "AT Travel Bag", price: "₹2,199", img: `${import.meta.env.BASE_URL}images/iqomi.jpg` },
