@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // ✅ only for Brands route
 import emailjs from "emailjs-com";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const form = useRef(); // ✅ Added useRef for the form
+  const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -128,12 +128,12 @@ export default function App() {
                 >
                   Explore Products
                 </a>
-                <a
-                  href={`${import.meta.env.BASE_URL}#/brands`}
+                <Link
+                  to="/brands"
                   className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
                 >
                   Available Brands
-                </a>
+                </Link>
                 <a
                   href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
                   target="_blank"
@@ -241,7 +241,7 @@ export default function App() {
 
       <footer className="bg-gradient-to-r from-gray-900 to-indigo-900 text-gray-300 py-6 mt-8 animate-fade-in">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="mb-2">{SHOP_NAME} • Nangloi, Delhi</div>
+          <div className="mb-2">{SHOP_NAME} • Delhi</div>
           <div className="text-sm">© {new Date().getFullYear()} {SHOP_NAME}. All rights reserved.</div>
         </div>
       </footer>
