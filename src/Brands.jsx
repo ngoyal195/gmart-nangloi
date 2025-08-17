@@ -41,7 +41,7 @@ const brandsData = [
 
 const EMOJIS = ["🧳", "🎒", "👜", "🧳", "🎒"]; // repeat pattern
 
-function FloatingEmojis({ count = 10 }) {
+function FloatingEmojis({ count = 36 }) {
   // build an array of emoji instances with randomized properties
   const [popped, setPopped] = useState({});
   const instances = Array.from({ length: count }).map((_, i) => {
