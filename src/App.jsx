@@ -1,8 +1,28 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs.sendForm(
+        "service_lgp3esc",   // your Service ID
+        "template_12upiko",  // your Template ID
+        form.current,
+        "S2Men4c1to3zZ2MPT"  // your Public Key
+      ).then(
+    () => {
+      alert("✅ Enquiry sent successfully!");
+      e.target.reset();
+    },
+    (error) => {
+      alert("❌ Failed to send. Please try again.");
+      console.error(error);
+    }
+  );
+};
 
   // === Customize these values ===
   const SHOP_NAME = "G-Mart Nangloi";
@@ -221,23 +241,29 @@ export default function App() {
                 </div>
               </div>
 
-              <form className="bg-white p-6 rounded-xl shadow-soft space-y-3" onSubmit={(e) => { e.preventDefault(); alert("Thank you — we will contact you soon!"); e.target.reset(); }}>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Name</label>
-                  <input required name="name" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Phone / Email</label>
-                  <input required name="contact" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Message</label>
-                  <textarea required name="message" rows="3" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition"></textarea>
-                </div>
-                <div className="flex justify-end">
-                  <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95">Send Enquiry</button>
-                </div>
-              </form>
+             <form ref={form}
+  onSubmit={sendEmail}
+  className="bg-white p-6 rounded-xl shadow-soft space-y-3"
+>
+  <div>
+    <label className="block text-sm font-medium text-gray-700">Name</label>
+    <input required name="from_name" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
+  </div>
+  <div>
+    <label className="block text-sm font-medium text-gray-700">Phone / Email</label>
+    <input required name="contact" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
+  </div>
+  <div>
+    <label className="block text-sm font-medium text-gray-700">Message</label>
+    <textarea required name="message" rows="3" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition"></textarea>
+  </div>
+  <div className="flex justify-end">
+    <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95">
+      Send Enquiry
+    </button>
+  </div>
+</form>
+
             </div>
           </div>
         </section>
