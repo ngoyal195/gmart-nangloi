@@ -59,11 +59,7 @@ export default function App() {
           </div>
 
           <nav className="hidden md:flex gap-6 items-center text-sm">
-            <a href="#home" className="hover:text-indigo-600 transition-colors">Home</a>
-            <a href="#products" className="hover:text-indigo-600 transition-colors">Products</a>
-            <a href="#offers" className="hover:text-indigo-600 transition-colors">Offers</a>
-            <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
-            <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
+            
             <a
               href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
               target="_blank"
