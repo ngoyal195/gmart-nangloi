@@ -43,6 +43,9 @@ export default function App() {
   ];
   // ===============================
 
+  // show only first 10 (or less if array smaller) — this keeps homepage limited to 6-10 items
+  const visibleProducts = products.slice(0, 10);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900">
       {/* NAVBAR */}
@@ -125,6 +128,15 @@ export default function App() {
                 >
                   Available Brands
                 </Link>
+
+                {/* New Browse Products button that goes to a separate page you'll create */}
+                <Link
+                  to="/all-products"
+                  className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  Browse Products
+                </Link>
+
                 <a
                   href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
                   target="_blank"
@@ -141,19 +153,38 @@ export default function App() {
         {/* PRODUCTS */}
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in">
-              Our Products
-            </h2>
+            <div>
+              <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in">
+                Our Products
+              </h2>
+
+              {/* New small label showing these are the popular bestsellers (did not change existing text) */}
+              <div className="inline-block text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full shadow-sm">
+                Popular BestSellers
+              </div>
+            </div>
+
             <div className="text-sm text-gray-600">Showing popular items</div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {products.map((p) => (
+            {visibleProducts.map((p) => (
               <article
                 key={p.id}
                 className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500 overflow-hidden animate-slide-up"
               >
-                <div className="h-44 sm:h-52 overflow-hidden">
+                <div className="h-44 sm:h-52 overflow-hidden relative">
+                  {/* Best Seller badge */}
+                  <span className="absolute top-3 left-3 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded-full shadow-sm z-20">
+                    Best Seller
+                  </span>
+
+                  {/* optional decorative ribbon (keeps text same) */}
+                  <div className="absolute right-0 top-3 transform rotate-12 -translate-y-1 translate-x-3">
+                    {/* decorative small element — purely visual */}
+                    <div className="text-[10px] font-bold px-2 py-0.5 rounded bg-white/60 backdrop-blur-sm shadow-sm">⭐</div>
+                  </div>
+
                   <img
                     src={p.img}
                     alt={p.name}
