@@ -116,12 +116,7 @@ export default function App() {
                 Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
               </p>
               <div className="mt-6 flex justify-center gap-3">
-                <a
-                  href="#products"
-                  className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
-                >
-                  Explore Products
-                </a>
+                
                 <Link
                   to="/brands"
                   className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
