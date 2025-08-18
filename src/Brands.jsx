@@ -12,43 +12,50 @@ const brandsData = [
     id: "safari",
     name: "Safari",
     img: `${import.meta.env.BASE_URL}images/safari.jpg`,
-    description: "Safari has been a trusted name for decades, known for durable and stylish luggage and backpacks.",
+    description:
+      "Safari has been a trusted name for decades, known for durable and stylish luggage and backpacks.",
   },
   {
     id: "vip",
     name: "VIP",
     img: `${import.meta.env.BASE_URL}images/vip.jpg`,
-    description: "VIP is one of India's oldest luggage brands, reliable for its innovation and sturdy travel gear.",
+    description:
+      "VIP is one of India's oldest luggage brands, reliable for its innovation and sturdy travel gear.",
   },
   {
     id: "american-tourister",
     name: "American Tourister",
     img: `${import.meta.env.BASE_URL}images/american.jpg`,
-    description: "American Tourister is a global leader, offering youthful, vibrant, and long-lasting luggage solutions.",
+    description:
+      "American Tourister is a global leader, offering youthful, vibrant, and long-lasting luggage solutions.",
   },
   {
     id: "kamiliant",
     name: "Kamiliant",
     img: `${import.meta.env.BASE_URL}images/kamiliant.jpg`,
-    description: "Kamiliant, a Samsonite brand, is known for bold designs and dependable quality at affordable prices.",
+    description:
+      "Kamiliant, a Samsonite brand, is known for bold designs and dependable quality at affordable prices.",
   },
   {
     id: "vittag",
     name: "Vittag",
     img: `${import.meta.env.BASE_URL}images/vittag.jpg`,
-    description: "Vittag is emerging as a reliable choice, offering stylish and functional travel bags.",
+    description:
+      "Vittag is emerging as a reliable choice, offering stylish and functional travel bags.",
   },
   {
     id: "skybags",
     name: "Skybags",
     img: `${import.meta.env.BASE_URL}images/skybags.jpg`,
-    description: "Skybags is the first choice for millions of Indians who like to make a fashion statement wherever they go.",
+    description:
+      "Skybags is the first choice for millions of Indians who like to make a fashion statement wherever they go.",
   },
   {
     id: "aristocrat",
     name: "Aristocrat",
     img: `${import.meta.env.BASE_URL}images/aristocrat.jpg`,
-    description: "Aristocrat, part of VIP Industries, is popular for practical, value-for-money luggage and bags.",
+    description:
+      "Aristocrat, part of VIP Industries, is popular for practical, value-for-money luggage and bags.",
   },
 ];
 
@@ -59,39 +66,68 @@ export default function Brands() {
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-glow">GM</div>
+            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-glow">
+              GM
+            </div>
             <div>
-              <div className="text-lg font-bold text-indigo-600">G-Mart Nangloi</div>
-              <div className="text-xs text-gray-500">Bags • Luggage • Wholesale & Retail</div>
+              <div className="text-lg font-bold text-indigo-600">
+                G-Mart Nangloi
+              </div>
+              <div className="text-xs text-gray-500">
+                Bags • Luggage • Wholesale & Retail
+              </div>
             </div>
           </Link>
 
           <div className="hidden md:flex gap-4 items-center">
-  <Link to="/" className="text-sm hover:text-indigo-600 transition">Home</Link>
-  <Link to="/all-products" className="text-sm hover:text-indigo-600 transition">See Products</Link>
-</div>
-
+            <Link
+              to="/"
+              className="text-sm hover:text-indigo-600 transition"
+            >
+              Home
+            </Link>
+            <Link
+              to="/all-products"
+              className="text-sm hover:text-indigo-600 transition"
+            >
+              See Products
+            </Link>
+          </div>
+        </div>
       </header>
 
       {/* Brand Cards */}
       <main className="pt-24 pb-16 relative z-10">
         <section className="max-w-6xl mx-auto px-4 py-10">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 animate-fade-in">Brands We Carry</h1>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 animate-fade-in">
+              Brands We Carry
+            </h1>
             <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
-              We proudly deal in some of the most trusted brands in the luggage and travel industry.
+              We proudly deal in some of the most trusted brands in the luggage
+              and travel industry.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {brandsData.map((b) => (
-              <article key={b.id} className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-400 overflow-hidden animate-slide-up">
+              <article
+                key={b.id}
+                className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-400 overflow-hidden animate-slide-up"
+              >
                 <div className="h-48 w-full flex items-center justify-center overflow-hidden bg-gray-100">
-                  <img src={b.img} alt={b.name} className="object-contain h-full w-full" loading="lazy" />
+                  <img
+                    src={b.img}
+                    alt={b.name}
+                    className="object-contain h-full w-full"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{b.name}</h3>
-                  <p className="mt-2 text-sm text-gray-600">{b.description}</p>
+                  <p className="mt-2 text-sm text-gray-600">
+                    {b.description}
+                  </p>
                 </div>
               </article>
             ))}
@@ -102,7 +138,9 @@ export default function Brands() {
       <footer className="bg-gray-900 text-gray-300 py-6 mt-12 relative z-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-2">G-Mart Nangloi • Delhi</div>
-          <div className="text-sm">© {new Date().getFullYear()} G-Mart Nangloi. All rights reserved.</div>
+          <div className="text-sm">
+            © {new Date().getFullYear()} G-Mart Nangloi. All rights reserved.
+          </div>
         </div>
       </footer>
     </div>
