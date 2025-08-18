@@ -1,8 +1,9 @@
+// src/AllProducts.jsx
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AllProducts() {
-  const PHONE = "+91-9811637493"; // keep same contact used in App.jsx
+  const PHONE = "+91-9811637493"; // same contact used in App.jsx
   const [query, setQuery] = useState("");
   const [activeBrand, setActiveBrand] = useState("All");
 
