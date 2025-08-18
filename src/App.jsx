@@ -101,49 +101,101 @@ export default function App() {
 
       <main className="pt-24">
         {/* HERO */}
-        <section id="home" className="relative">
-          <div
-            className="h-64 sm:h-96 bg-cover bg-center flex items-center justify-center animate-fade-in"
-            style={{
-              backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.15)), url(${import.meta.env.BASE_URL}images/home.jpeg)`,
-            }}
+        {/* ====== REPLACE YOUR OLD HERO SECTION WITH THIS ====== */}
+<section id="home" className="relative">
+  {/* Inline styles for the continuous slide animation (keeps CSS in one place) */}
+  <style>{`
+    @keyframes slide-hero {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .hero-slide {
+      animation: slide-hero 4s linear infinite;
+      /* pause on hover (optional) */
+    }
+    .hero-slide:hover {
+      animation-play-state: paused;
+    }
+  `}</style>
+
+  <div className="h-64 sm:h-96 relative overflow-hidden">
+    {/* Sliding images container (absolute behind content) */}
+    <div className="absolute inset-0">
+      <div
+        className="flex h-full hero-slide"
+        style={{ width: "200%" }} /* we duplicate the images to make loop seamless */
+      >
+        {/* list your hero images here — duplicate sequence for smooth loop */}
+        {[
+          `${import.meta.env.BASE_URL}images/home.jpeg`,
+          `${import.meta.env.BASE_URL}images/home1.jpeg`,
+          `${import.meta.env.BASE_URL}images/home2.jpeg`,
+          `${import.meta.env.BASE_URL}images/home3.jpeg`,
+          `${import.meta.env.BASE_URL}images/home4.jpeg`,
+        ]
+          .concat([
+            /* duplicate the same sequence to allow continuous looping */
+            `${import.meta.env.BASE_URL}images/home.jpeg`,
+            `${import.meta.env.BASE_URL}images/home1.jpeg`,
+            `${import.meta.env.BASE_URL}images/home2.jpeg`,
+            `${import.meta.env.BASE_URL}images/home3.jpeg`,
+            `${import.meta.env.BASE_URL}images/home4.jpeg`,
+          ])
+          .map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              alt={`Hero ${idx}`}
+              className="w-1/3 h-full object-cover flex-shrink-0"
+              loading="lazy"
+            />
+          ))}
+      </div>
+    </div>
+
+    {/* Gradient overlay (keeps your existing visual) */}
+    <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.15))" }} />
+
+    {/* Hero content (kept exactly the same as before) */}
+    <div className="h-full flex items-center justify-center relative z-10 px-4">
+      <div className="text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up">
+          Trusted Bags & Luggage — G-Mart Nangloi
+        </h1>
+        <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in">
+          Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
+        </p>
+        <div className="mt-6 flex justify-center gap-3">
+          
+          <Link
+            to="/brands"
+            className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="text-center px-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up">
-                Trusted Bags & Luggage — G-Mart Nangloi
-              </h1>
-              <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in">
-                Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
-              </p>
-              <div className="mt-6 flex justify-center gap-3">
-                
-                <Link
-                  to="/brands"
-                  className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
-                >
-                  Available Brands
-                </Link>
+            Available Brands
+          </Link>
 
-                {/* New Browse Products button that goes to a separate page you'll create */}
-                <Link
-                  to="/all-products"
-                  className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
-                >
-                  Browse Products
-                </Link>
+          {/* New Browse Products button that goes to a separate page you'll create */}
+          <Link
+            to="/all-products"
+            className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+          >
+            Browse Products
+          </Link>
 
-                <a
-                  href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95"
-                >
-                  Quick Enquiry
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+          <a
+            href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95"
+          >
+            Quick Enquiry
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{/* ====== END HERO REPLACEMENT ====== */}
 
         {/* PRODUCTS */}
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
