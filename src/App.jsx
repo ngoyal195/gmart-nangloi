@@ -174,9 +174,7 @@ export default function App() {
                       >
                         Enquire
                       </a>
-                      <button className="px-3 py-1.5 rounded-full border text-sm" title="Add to wishlist (future)">
-                        ♥
-                      </button>
+                      
                     </div>
                   </div>
                 </div>
