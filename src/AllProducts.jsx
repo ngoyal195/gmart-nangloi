@@ -58,15 +58,14 @@ export default function AllProducts() {
       <header className="bg-white/90 backdrop-blur-md shadow px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-  <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold">
-    GM
-  </div>
-  <div>
-    <div className="text-lg font-bold text-indigo-600">G-Mart Nangloi</div>
-    <div className="text-xs text-gray-500">Bags • Luggage • Wholesale & Retail</div>
-  </div>
-</Link>
-
+            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold">
+              GM
+            </div>
+            <div>
+              <div className="text-lg font-bold text-indigo-600">G-Mart Nangloi</div>
+              <div className="text-xs text-gray-500">Bags • Luggage • Wholesale & Retail</div>
+            </div>
+          </Link>
 
           <nav className="flex items-center gap-3 text-sm">
             <Link to="/" className="text-indigo-600 font-medium">Back to Home</Link>
