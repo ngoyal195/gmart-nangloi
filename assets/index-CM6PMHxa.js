@@ -70,7 +70,7 @@ Error generating stack: `+i.message+`
       100% { transform: translateX(-50%); }
     }
     .hero-slide {
-      animation: slide-hero 30s linear infinite;
+      animation: slide-hero 60s linear infinite;
       /* pause on hover (optional) */
     }
     .hero-slide:hover {
