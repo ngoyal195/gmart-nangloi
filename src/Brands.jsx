@@ -66,7 +66,7 @@ export default function Brands() {
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-glow">
+            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-glow animate-pulse">
               GM
             </div>
             <div>
