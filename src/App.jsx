@@ -269,8 +269,11 @@ export default function App() {
               <div className="bg-white p-6 rounded-xl shadow-soft glass-card">
                 <h4 className="font-semibold mb-2">Store Address</h4>
                 <p className="text-gray-700">{ADDRESS}</p>
+                <h4 className="font-semibold mt-4 mb-2">Proprietor</h4>
+                <p className="text-gray-700">Mr. Gopal Goyal</p>
                 <h4 className="font-semibold mt-4 mb-2">Phone</h4>
                 <p className="text-gray-700">{PHONE}</p>
+                
                 <div className="mt-4 flex gap-3">
                   <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block bg-green-500 text-white px-4 py-2 rounded shadow hover:shadow-glow transition">Chat on WhatsApp</a>
                   <a href={`https://www.google.com/maps/search/${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer" className="inline-block border px-4 py-2 rounded hover:shadow-md transition">Open in Maps</a>
