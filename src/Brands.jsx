@@ -67,13 +67,10 @@ export default function Brands() {
           </Link>
 
           <div className="hidden md:flex gap-4 items-center">
-            <Link to="/" className="text-sm hover:text-indigo-600 transition">Home</Link>
-           <div className="hidden md:flex gap-4 items-center">
-
+  <Link to="/" className="text-sm hover:text-indigo-600 transition">Home</Link>
   <Link to="/all-products" className="text-sm hover:text-indigo-600 transition">See Products</Link>
+</div>
 
-          </div>
-        </div>
       </header>
 
       {/* Brand Cards */}
