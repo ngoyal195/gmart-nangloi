@@ -47,9 +47,9 @@ export default function App() {
   const visibleProducts = products.slice(0, 10);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 fade-in">
       {/* NAVBAR */}
-      <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow">
+      <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow slide-up">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-md bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-glow">
@@ -67,7 +67,7 @@ export default function App() {
               href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
               target="_blank"
               rel="noreferrer"
-              className="ml-4 inline-flex items-center gap-2 bg-green-500 text-white px-3 py-1.5 rounded-full text-sm shadow-sm hover:bg-green-600 transition"
+              className="ml-4 inline-flex items-center gap-2 bg-green-500 text-white px-3 py-1.5 rounded-full text-sm shadow-sm hover:bg-green-600 transition hover-lift"
             >
               Chat on WhatsApp
             </a>
@@ -126,7 +126,7 @@ export default function App() {
         style={{ width: "200%" }} /* we duplicate the images to make loop seamless */
       >
         {/* list your hero images here — duplicate sequence for smooth loop */}
-        {[
+        {[ 
           `${import.meta.env.BASE_URL}images/home.jpeg`,
           `${import.meta.env.BASE_URL}images/home1.jpeg`,
           `${import.meta.env.BASE_URL}images/home2.jpeg`,
@@ -159,17 +159,17 @@ export default function App() {
     {/* Hero content (kept exactly the same as before) */}
     <div className="h-full flex items-center justify-center relative z-10 px-4">
       <div className="text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up slide-up">
           Trusted Bags & Luggage — G-Mart Nangloi
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in">
+        <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in fade-in">
           Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
         </p>
         <div className="mt-6 flex justify-center gap-3">
           
           <Link
             to="/brands"
-            className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+            className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
           >
             Available Brands
           </Link>
@@ -177,7 +177,7 @@ export default function App() {
           {/* New Browse Products button that goes to a separate page you'll create */}
           <Link
             to="/all-products"
-            className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300"
+            className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
           >
             Browse Products
           </Link>
@@ -186,7 +186,7 @@ export default function App() {
             href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95 hover-lift"
           >
             Quick Enquiry
           </a>
@@ -201,7 +201,7 @@ export default function App() {
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in">
+              <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in fade-in">
                 Our Products
               </h2>
 
@@ -218,7 +218,7 @@ export default function App() {
             {visibleProducts.map((p) => (
               <article
                 key={p.id}
-                className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500 overflow-hidden animate-slide-up"
+                className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500 overflow-hidden animate-slide-up glass-card hover-lift"
               >
                 <div className="h-44 sm:h-52 overflow-hidden relative">
                   {/* Best Seller badge */}
@@ -248,7 +248,7 @@ export default function App() {
                         href={`https://wa.me/${PHONE.replace(/\D/g, "")}?text=Hi%20G-Mart%20Nangloi,%20I%20am%20interested%20in%20${encodeURIComponent(p.name)}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-3 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-teal-400 text-white text-sm shadow hover:shadow-glow transition transform active:scale-95"
+                        className="px-3 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-teal-400 text-white text-sm shadow hover:shadow-glow transition transform active:scale-95 hover-lift"
                       >
                         Enquire
                       </a>
@@ -266,7 +266,7 @@ export default function App() {
           <div className="max-w-4xl mx-auto px-4">
             <h3 className="text-2xl font-bold mb-6">Contact & Visit</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-soft">
+              <div className="bg-white p-6 rounded-xl shadow-soft glass-card">
                 <h4 className="font-semibold mb-2">Store Address</h4>
                 <p className="text-gray-700">{ADDRESS}</p>
                 <h4 className="font-semibold mt-4 mb-2">Phone</h4>
@@ -281,7 +281,7 @@ export default function App() {
               <form
                 ref={form}
                 onSubmit={sendEmail}
-                className="bg-white p-6 rounded-xl shadow-soft space-y-3"
+                className="bg-white p-6 rounded-xl shadow-soft space-y-3 glass-card"
               >
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Name</label>
@@ -296,7 +296,7 @@ export default function App() {
                   <textarea required name="message" rows="3" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition"></textarea>
                 </div>
                 <div className="flex justify-end">
-                  <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95">
+                  <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:shadow-glow transition transform active:scale-95 hover-lift">
                     Send Enquiry
                   </button>
                 </div>
@@ -306,7 +306,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="bg-gradient-to-r from-gray-900 to-indigo-900 text-gray-300 py-6 mt-8 animate-fade-in">
+      <footer className="bg-gradient-to-r from-gray-900 to-indigo-900 text-gray-300 py-6 mt-8 animate-fade-in fade-in">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-2">{SHOP_NAME} • Delhi</div>
           <div className="text-sm">© {new Date().getFullYear()} {SHOP_NAME}. All rights reserved.</div>
