@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Use Poppins if available (index.html should include Google Fonts link).
-   Falls back to Arial / sans-serif so nothing breaks. */
+/* --- Global Typography & Layout --- */
 body {
   font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  color: #111827; /* gray-900 */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* --- Smooth global transitions --- */
+* {
+  transition: all 0.25s ease-in-out;
 }
 
 /* --- Floating emoji background styles --- */
@@ -18,22 +28,38 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1;
-  transition: transform 180ms ease, opacity 200ms ease;
+  transition: transform 220ms ease, opacity 200ms ease;
   cursor: pointer;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* subtle neumorphic shadow */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 50%;
 }
 
-/* two float directions read via data-dir attribute */
+/* Hover zoom effect */
+.emoji:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+/* Focus ring */
+.emoji:focus {
+  outline: 3px solid rgba(79,70,229,0.25);
+  outline-offset: 4px;
+  transform: scale(1.1);
+}
+
+/* --- Float directions --- */
 .emoji[data-dir="up"] {
-  animation-name: floatUp;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-   animation: floatUp 3s ease-in-out infinite; 
+  animation: floatUp 3s ease-in-out infinite; 
 }
 .emoji[data-dir="down"] {
-  animation-name: floatDown;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-   animation: floatDown 3s ease-in-out infinite; 
+  animation: floatDown 3s ease-in-out infinite; 
 }
 
 /* float keyframes */
@@ -54,43 +80,34 @@ body {
   60% { transform: scale(1.6); opacity: 1; }
   100% { transform: scale(0); opacity: 0; }
 }
-
-/* applying pop class to inner span */
 .emoji .pop {
   animation: popAnim 0.45s ease forwards;
-}
-
-/* touch/click area and layout */
-.emoji {
-  width: 2.4rem;
-  height: 2.4rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* ensure emoji layer doesn't block clicks on page content */
 .pointer-events-none > .relative > .emoji { pointer-events: auto; }
 
-/* subtle responsive reduction */
+/* Responsive size tweak */
 @media (max-width: 640px) {
   .emoji { width: 1.8rem; height: 1.8rem; font-size: 18px !important; }
 }
 
-/* Optional: small helper tooltip that fades away */
+/* --- Tooltip helper --- */
 .tap-helper {
   position: fixed;
-  top: 5.5rem;              /* below header */
+  top: 5.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 30;
-  background: rgba(255,255,255,0.95);
-  padding: 0.45rem 0.7rem;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  font-size: 0.875rem;
-  color: #374151; /* gray-700 */
-  pointer-events: none;    /* non-interactive */
+  backdrop-filter: blur(8px); /* glassmorphism */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1f2937; /* gray-800 */
+  pointer-events: none;
   animation: helperFade 4s ease forwards;
 }
 
@@ -101,8 +118,51 @@ body {
   100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
 }
 
-/* small accessibility focus style for keyboard users */
-.emoji:focus {
-  outline: 3px solid rgba(79,70,229,0.18);
-  outline-offset: 3px;
+/* --- Utility classes --- */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp 0.7s ease forwards;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.zoom-in {
+  animation: zoomIn 0.6s ease forwards;
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #6366f1, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.6);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 1rem;
+}
+
+.soft-shadow {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
