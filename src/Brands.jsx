@@ -135,7 +135,7 @@ export default function Brands() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-gray-300 py-6 mt-12 relative z-10">
+      <footer className="bg-gradient-to-r from-gray-900 to-indigo-900 text-gray-300 py-6 mt-12 relative z-10 fade-in">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-2">G-Mart Nangloi • Delhi</div>
           <div className="text-sm">
