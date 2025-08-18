@@ -68,8 +68,10 @@ export default function Brands() {
 
           <div className="hidden md:flex gap-4 items-center">
             <Link to="/" className="text-sm hover:text-indigo-600 transition">Home</Link>
-            <a href={`${import.meta.env.BASE_URL}#products`} className="text-sm hover:text-indigo-600 transition">Products</a>
-            <a href={`${import.meta.env.BASE_URL}#contact`} className="text-sm hover:text-indigo-600 transition">Contact</a>
+           <div className="hidden md:flex gap-4 items-center">
+
+  <Link to="/all-products" className="text-sm hover:text-indigo-600 transition">See Products</Link>
+
           </div>
         </div>
       </header>
