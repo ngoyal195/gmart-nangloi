@@ -176,7 +176,7 @@ export default function App() {
             <div className="h-full flex items-center justify-center relative z-10 px-4">
               <div className="text-center">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up slide-up">
-                  Trusted Bags & Luggage — G-Mart Nangloi
+                  G-Mart Nangloi - One stop for all kind of luggages! 
                 </h1>
                 <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in fade-in">
                   Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
