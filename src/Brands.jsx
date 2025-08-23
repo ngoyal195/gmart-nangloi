@@ -1,11 +1,6 @@
+// src/Brands.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-
-/**
- * src/Brands.jsx
- * - Brand cards only (no products)
- * - Each card has image + name + description
- */
 
 const brandsData = [
   {
@@ -80,10 +75,7 @@ export default function Brands() {
           </Link>
 
           <div className="hidden md:flex gap-4 items-center">
-            <Link
-              to="/"
-              className="text-sm hover:text-indigo-600 transition"
-            >
+            <Link to="/" className="text-sm hover:text-indigo-600 transition">
               Home
             </Link>
             <Link
@@ -111,25 +103,25 @@ export default function Brands() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {brandsData.map((b) => (
-              <article
+              <Link
                 key={b.id}
-                className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-400 overflow-hidden animate-slide-up"
+                to={`/all-products?brand=${encodeURIComponent(b.name)}`}
               >
-                <div className="h-48 w-full flex items-center justify-center overflow-hidden bg-gray-100">
-                  <img
-                    src={b.img}
-                    alt={b.name}
-                    className="object-contain h-full w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{b.name}</h3>
-                  <p className="mt-2 text-sm text-gray-600">
-                    {b.description}
-                  </p>
-                </div>
-              </article>
+                <article className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-400 overflow-hidden animate-slide-up">
+                  <div className="h-48 w-full flex items-center justify-center overflow-hidden bg-gray-100">
+                    <img
+                      src={b.img}
+                      alt={b.name}
+                      className="object-contain h-full w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold">{b.name}</h3>
+                    <p className="mt-2 text-sm text-gray-600">{b.description}</p>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </section>
