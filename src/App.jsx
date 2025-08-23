@@ -52,9 +52,7 @@ export default function App() {
     { id: 5, name: "IQOMI Laptop Backpack", price: "₹799", img: `${import.meta.env.BASE_URL}images/iqomi.jpg` },
     { id: 6, name: "Make-up Vanity", price: "₹899", img: `${import.meta.env.BASE_URL}images/vanity.jpg` },
   ];
-  // ===============================
 
-  // show only first 10 (or less if array smaller) — this keeps homepage limited to 6-10 items
   const visibleProducts = products.slice(0, 10);
 
   // --------- LoadingScreen component (local) ----------
@@ -73,27 +71,17 @@ export default function App() {
     const visual = visuals[Math.floor(Math.random() * visuals.length)];
 
     return (
-      <div className="loading-screen fixed inset-0 flex items-center justify-center"
-  style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}>
-        <div className="loading-content">
-          <div className="loader" aria-hidden="true"></div>
-          <div className="text-center">
-            <div style={{ fontSize: 48, lineHeight: 1 }}>{visual}</div>
-            <p className="text-lg font-medium gradient-text mt-3">{quote}</p>
-          </div>
+      <div className="loading-screen fixed inset-0 flex items-center justify-center bg-white/60 backdrop-blur-sm z-50">
+        <div className="loading-content text-center">
+          <div style={{ fontSize: 48, lineHeight: 1 }}>{visual}</div>
+          <p className="text-lg font-medium gradient-text mt-3">{quote}</p>
         </div>
       </div>
     );
   }
 
-  // ---------- Main app UI (your original file content) ----------
-  // If loading — show loading screen; else show app
-  if (loading) {
-    return <LoadingScreen />;
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 fade-in">
+    <div className={`min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 fade-in ${loading ? "pointer-events-none blur-sm" : ""}`}>
       {/* NAVBAR */}
       <header className="fixed inset-x-0 top-0 z-40 bg-white/85 backdrop-blur-md shadow slide-up">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -134,7 +122,6 @@ export default function App() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-white/95 border-t">
             <div className="px-4 py-3 flex flex-col gap-2">
@@ -146,31 +133,19 @@ export default function App() {
 
       <main className="pt-24">
         {/* HERO */}
-        {/* ====== REPLACE YOUR OLD HERO SECTION WITH THIS ====== */}
         <section id="home" className="relative">
-          {/* Inline styles for the continuous slide animation (keeps CSS in one place) */}
           <style>{`
             @keyframes slide-hero {
               0% { transform: translateX(0%); }
               100% { transform: translateX(-50%); }
             }
-            .hero-slide {
-              animation: slide-hero 60s linear infinite;
-              /* pause on hover (optional) */
-            }
-            .hero-slide:hover {
-              animation-play-state: paused;
-            }
+            .hero-slide { animation: slide-hero 60s linear infinite; }
+            .hero-slide:hover { animation-play-state: paused; }
           `}</style>
 
           <div className="h-64 sm:h-96 relative overflow-hidden">
-            {/* Sliding images container (absolute behind content) */}
             <div className="absolute inset-0">
-              <div
-                className="flex h-full hero-slide"
-                style={{ width: "200%" }} /* we duplicate the images to make loop seamless */
-              >
-                {/* list your hero images here — duplicate sequence for smooth loop */}
+              <div className="flex h-full hero-slide" style={{ width: "200%" }}>
                 {[
                   `${import.meta.env.BASE_URL}images/home.jpeg`,
                   `${import.meta.env.BASE_URL}images/home1.jpeg`,
@@ -197,10 +172,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Gradient overlay (keeps your existing visual) */}
             <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.15))" }} />
 
-            {/* Hero content (kept exactly the same as before) */}
             <div className="h-full flex items-center justify-center relative z-10 px-4">
               <div className="text-center">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up slide-up">
@@ -216,15 +189,12 @@ export default function App() {
                   >
                     Available Brands
                   </Link>
-
-                  {/* New Browse Products button that goes to a separate page you'll create */}
                   <Link
                     to="/all-products"
                     className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
                   >
                     Browse Products
                   </Link>
-
                   <a
                     href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
                     target="_blank"
@@ -238,7 +208,6 @@ export default function App() {
             </div>
           </div>
         </section>
-        {/* ====== END HERO REPLACEMENT ====== */}
 
         {/* PRODUCTS */}
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
@@ -247,34 +216,23 @@ export default function App() {
               <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in fade-in">
                 Our Popular Products
               </h2>
-
-              {/* New small label showing these are the popular bestsellers (did not change existing text) */}
               <div className="inline-block text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full shadow-sm">
                 Popular BestSellers
               </div>
             </div>
-
             <div className="text-sm text-gray-600">Showing popular items</div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {visibleProducts.map((p) => (
-              <article
-                key={p.id}
-                className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500 overflow-hidden animate-slide-up glass-card hover-lift"
-              >
+              <article key={p.id} className="bg-white rounded-2xl shadow-soft hover:shadow-glow transform hover:-translate-y-2 transition-all duration-500 overflow-hidden animate-slide-up glass-card hover-lift">
                 <div className="h-44 sm:h-52 overflow-hidden relative">
-                  {/* Best Seller badge */}
                   <span className="absolute top-3 left-3 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded-full shadow-sm z-20">
                     Best Seller
                   </span>
-
-                  {/* optional decorative ribbon (keeps text same) */}
                   <div className="absolute right-0 top-3 transform rotate-12 -translate-y-1 translate-x-3">
-                    {/* decorative small element — purely visual */}
                     <div className="text-[10px] font-bold px-2 py-0.5 rounded bg-white/60 backdrop-blur-sm shadow-sm">⭐</div>
                   </div>
-
                   <img
                     src={p.img}
                     alt={p.name}
@@ -315,19 +273,13 @@ export default function App() {
                 <p className="text-gray-700">Mr. Gopal Goyal</p>
                 <h4 className="font-semibold mt-4 mb-2">Phone</h4>
                 <p className="text-gray-700">{PHONE}</p>
-
                 <div className="mt-4 flex gap-3">
                   <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block bg-green-500 text-white px-4 py-2 rounded shadow hover:shadow-glow transition">Chat on WhatsApp</a>
                   <a href={`https://www.google.com/maps/search/${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer" className="inline-block border px-4 py-2 rounded hover:shadow-md transition">Open in Maps</a>
                 </div>
               </div>
 
-              {/* EmailJS Form */}
-              <form
-                ref={form}
-                onSubmit={sendEmail}
-                className="bg-white p-6 rounded-xl shadow-soft space-y-3 glass-card"
-              >
+              <form ref={form} onSubmit={sendEmail} className="bg-white p-6 rounded-xl shadow-soft space-y-3 glass-card">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Name</label>
                   <input required name="from_name" className="mt-1 w-full border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-200 transition" />
@@ -357,6 +309,9 @@ export default function App() {
           <div className="text-sm">© {new Date().getFullYear()} {SHOP_NAME}. All rights reserved.</div>
         </div>
       </footer>
+
+      {/* Loading overlay */}
+      {loading && <LoadingScreen />}
     </div>
   );
 }
