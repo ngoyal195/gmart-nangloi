@@ -202,7 +202,7 @@ export default function App() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl font-bold mb-6 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-indigo-600 after:mx-auto after:mt-2 animate-fade-in fade-in">
-                Our Products
+                Our Popular Products
               </h2>
 
               {/* New small label showing these are the popular bestsellers (did not change existing text) */}
