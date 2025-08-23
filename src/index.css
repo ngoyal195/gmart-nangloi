@@ -172,8 +172,8 @@ body {
 .loading-screen {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.65); /* semi-transparent white */
-  backdrop-filter: blur(8px); /* blur the background content behind it */
+  background: rgba(0,0,0,0.2); /* very subtle dim over the page */
+  backdrop-filter: blur(4px); /* slight blur effect */
   display: flex;
   align-items: center;
   justify-content: center;
