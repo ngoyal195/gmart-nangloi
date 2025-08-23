@@ -1,8 +1,19 @@
-import { useState, useRef } from "react";
+// src/App.jsx
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom"; // ✅ only for Brands route
 import emailjs from "emailjs-com";
 
 export default function App() {
+  // --- Loading screen state ---
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // simulate a short loading time for polish (adjust duration if desired)
+    const t = setTimeout(() => setLoading(false), 1800);
+    return () => clearTimeout(t);
+  }, []);
+
+  // --- rest of your state + refs ---
   const [menuOpen, setMenuOpen] = useState(false);
   const form = useRef();
 
@@ -11,8 +22,8 @@ export default function App() {
 
     emailjs
       .sendForm(
-        "service_lgp3esc",   // your Service ID
-        "template_12upiko",  // your Template ID
+        "service_lgp3esc", // your Service ID
+        "template_12upiko", // your Template ID
         form.current,
         "S2Men4c1to3zZ2MPT" // your Public Key
       )
@@ -46,6 +57,40 @@ export default function App() {
   // show only first 10 (or less if array smaller) — this keeps homepage limited to 6-10 items
   const visibleProducts = products.slice(0, 10);
 
+  // --------- LoadingScreen component (local) ----------
+  function LoadingScreen() {
+    const quotes = [
+      "Travel light, live light, spread the light. ✨",
+      "Adventure begins where the road ends. 🌍",
+      "A good bag can carry more than things — it carries dreams. 🎒",
+      "Journeys are measured in memories, not miles. 🧳",
+      "Life is a journey. Pack wisely. 🚀",
+      "Behind every great trip is an even better bag. 👜",
+    ];
+    const visuals = ["🧳", "🎒", "✈️", "🌍", "🛫", "🧭"];
+
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    const visual = visuals[Math.floor(Math.random() * visuals.length)];
+
+    return (
+      <div className="loading-screen">
+        <div className="loading-content">
+          <div className="loader" aria-hidden="true"></div>
+          <div className="text-center">
+            <div style={{ fontSize: 48, lineHeight: 1 }}>{visual}</div>
+            <p className="text-lg font-medium gradient-text mt-3">{quote}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ---------- Main app UI (your original file content) ----------
+  // If loading — show loading screen; else show app
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-poppins text-gray-900 fade-in">
       {/* NAVBAR */}
@@ -62,7 +107,6 @@ export default function App() {
           </div>
 
           <nav className="hidden md:flex gap-6 items-center text-sm">
-            
             <a
               href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
               target="_blank"
@@ -102,100 +146,98 @@ export default function App() {
       <main className="pt-24">
         {/* HERO */}
         {/* ====== REPLACE YOUR OLD HERO SECTION WITH THIS ====== */}
-<section id="home" className="relative">
-  {/* Inline styles for the continuous slide animation (keeps CSS in one place) */}
-  <style>{`
-    @keyframes slide-hero {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    .hero-slide {
-      animation: slide-hero 60s linear infinite;
-      /* pause on hover (optional) */
-    }
-    .hero-slide:hover {
-      animation-play-state: paused;
-    }
-  `}</style>
+        <section id="home" className="relative">
+          {/* Inline styles for the continuous slide animation (keeps CSS in one place) */}
+          <style>{`
+            @keyframes slide-hero {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-50%); }
+            }
+            .hero-slide {
+              animation: slide-hero 60s linear infinite;
+              /* pause on hover (optional) */
+            }
+            .hero-slide:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
 
-  <div className="h-64 sm:h-96 relative overflow-hidden">
-    {/* Sliding images container (absolute behind content) */}
-    <div className="absolute inset-0">
-      <div
-        className="flex h-full hero-slide"
-        style={{ width: "200%" }} /* we duplicate the images to make loop seamless */
-      >
-        {/* list your hero images here — duplicate sequence for smooth loop */}
-        {[ 
-          `${import.meta.env.BASE_URL}images/home.jpeg`,
-          `${import.meta.env.BASE_URL}images/home1.jpeg`,
-          `${import.meta.env.BASE_URL}images/home2.jpeg`,
-          `${import.meta.env.BASE_URL}images/home3.jpeg`,
-          `${import.meta.env.BASE_URL}images/home4.jpeg`,
-        ]
-          .concat([
-            /* duplicate the same sequence to allow continuous looping */
-            `${import.meta.env.BASE_URL}images/home.jpeg`,
-            `${import.meta.env.BASE_URL}images/home1.jpeg`,
-            `${import.meta.env.BASE_URL}images/home2.jpeg`,
-            `${import.meta.env.BASE_URL}images/home3.jpeg`,
-            `${import.meta.env.BASE_URL}images/home4.jpeg`,
-          ])
-          .map((src, idx) => (
-            <img
-              key={idx}
-              src={src}
-              alt={`Hero ${idx}`}
-              className="w-1/3 h-full object-cover flex-shrink-0"
-              loading="lazy"
-            />
-          ))}
-      </div>
-    </div>
+          <div className="h-64 sm:h-96 relative overflow-hidden">
+            {/* Sliding images container (absolute behind content) */}
+            <div className="absolute inset-0">
+              <div
+                className="flex h-full hero-slide"
+                style={{ width: "200%" }} /* we duplicate the images to make loop seamless */
+              >
+                {/* list your hero images here — duplicate sequence for smooth loop */}
+                {[
+                  `${import.meta.env.BASE_URL}images/home.jpeg`,
+                  `${import.meta.env.BASE_URL}images/home1.jpeg`,
+                  `${import.meta.env.BASE_URL}images/home2.jpeg`,
+                  `${import.meta.env.BASE_URL}images/home3.jpeg`,
+                  `${import.meta.env.BASE_URL}images/home4.jpeg`,
+                ]
+                  .concat([
+                    `${import.meta.env.BASE_URL}images/home.jpeg`,
+                    `${import.meta.env.BASE_URL}images/home1.jpeg`,
+                    `${import.meta.env.BASE_URL}images/home2.jpeg`,
+                    `${import.meta.env.BASE_URL}images/home3.jpeg`,
+                    `${import.meta.env.BASE_URL}images/home4.jpeg`,
+                  ])
+                  .map((src, idx) => (
+                    <img
+                      key={idx}
+                      src={src}
+                      alt={`Hero ${idx}`}
+                      className="w-1/3 h-full object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                  ))}
+              </div>
+            </div>
 
-    {/* Gradient overlay (keeps your existing visual) */}
-    <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.15))" }} />
+            {/* Gradient overlay (keeps your existing visual) */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.15))" }} />
 
-    {/* Hero content (kept exactly the same as before) */}
-    <div className="h-full flex items-center justify-center relative z-10 px-4">
-      <div className="text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up slide-up">
-          Trusted Bags & Luggage — G-Mart Nangloi
-        </h1>
-        <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in fade-in">
-          Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
-        </p>
-        <div className="mt-6 flex justify-center gap-3">
-          
-          <Link
-            to="/brands"
-            className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
-          >
-            Available Brands
-          </Link>
+            {/* Hero content (kept exactly the same as before) */}
+            <div className="h-full flex items-center justify-center relative z-10 px-4">
+              <div className="text-center">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl text-white font-extrabold drop-shadow-xl animate-slide-up slide-up">
+                  Trusted Bags & Luggage — G-Mart Nangloi
+                </h1>
+                <p className="mt-3 text-sm sm:text-base text-gray-100 max-w-xl mx-auto animate-fade-in fade-in">
+                  Retail & Wholesale · Backpacks · Trolley Bags · Travel Bags · Kids Bags · Office & Fancy Luggage
+                </p>
+                <div className="mt-6 flex justify-center gap-3">
+                  <Link
+                    to="/brands"
+                    className="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
+                  >
+                    Available Brands
+                  </Link>
 
-          {/* New Browse Products button that goes to a separate page you'll create */}
-          <Link
-            to="/all-products"
-            className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
-          >
-            Browse Products
-          </Link>
+                  {/* New Browse Products button that goes to a separate page you'll create */}
+                  <Link
+                    to="/all-products"
+                    className="bg-white text-indigo-600 px-5 py-2 rounded-full font-semibold shadow-lg border border-indigo-100 hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 hover-lift"
+                  >
+                    Browse Products
+                  </Link>
 
-          <a
-            href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95 hover-lift"
-          >
-            Quick Enquiry
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{/* ====== END HERO REPLACEMENT ====== */}
+                  <a
+                    href={`https://wa.me/${PHONE.replace(/\D/g, "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-400 text-white px-4 py-2 rounded-full font-medium shadow hover:opacity-95 transition transform active:scale-95 hover-lift"
+                  >
+                    Quick Enquiry
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* ====== END HERO REPLACEMENT ====== */}
 
         {/* PRODUCTS */}
         <section id="products" className="max-w-6xl mx-auto px-4 py-12">
@@ -252,7 +294,6 @@ export default function App() {
                       >
                         Enquire
                       </a>
-                      
                     </div>
                   </div>
                 </div>
@@ -273,7 +314,7 @@ export default function App() {
                 <p className="text-gray-700">Mr. Gopal Goyal</p>
                 <h4 className="font-semibold mt-4 mb-2">Phone</h4>
                 <p className="text-gray-700">{PHONE}</p>
-                
+
                 <div className="mt-4 flex gap-3">
                   <a href={`https://wa.me/${PHONE.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="inline-block bg-green-500 text-white px-4 py-2 rounded shadow hover:shadow-glow transition">Chat on WhatsApp</a>
                   <a href={`https://www.google.com/maps/search/${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer" className="inline-block border px-4 py-2 rounded hover:shadow-md transition">Open in Maps</a>
