@@ -167,11 +167,13 @@ body {
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
+
 /* --- Global Loading Screen --- */
 .loading-screen {
   position: fixed;
   inset: 0;
-  background-color: rgba(255,255,255,0.65);
+  background: rgba(255, 255, 255, 0.65); /* semi-transparent white */
+  backdrop-filter: blur(8px); /* blur the background content behind it */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,6 +181,7 @@ body {
   color: white;
   text-align: center;
 }
+
 
 .loading-content {
   display: flex;
