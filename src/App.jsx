@@ -9,7 +9,7 @@ export default function App() {
 
   useEffect(() => {
     // simulate a short loading time for polish (adjust duration if desired)
-    const t = setTimeout(() => setLoading(false), 1800);
+    const t = setTimeout(() => setLoading(false), 900);
     return () => clearTimeout(t);
   }, []);
 
