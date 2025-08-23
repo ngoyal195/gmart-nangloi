@@ -73,7 +73,8 @@ export default function App() {
     const visual = visuals[Math.floor(Math.random() * visuals.length)];
 
     return (
-      <div className="loading-screen">
+      <div className="loading-screen fixed inset-0 flex items-center justify-center"
+  style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}>
         <div className="loading-content">
           <div className="loader" aria-hidden="true"></div>
           <div className="text-center">
